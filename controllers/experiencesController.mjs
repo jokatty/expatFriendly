@@ -1,3 +1,4 @@
+
 export default function initExperienceController(db) {
   const allExperiences = async(req, res)=>{
     try {
@@ -10,7 +11,24 @@ export default function initExperienceController(db) {
       });
     }
   }
+  const createExperience = async(req,res)=>{
+      const userExperience ={
+        experience: req.body.experience,
+        userId: req.body.userId
+      }
+      try {
+      const experience = await db.Experience.create(userExperience);
+      res.status(201).json(experience);
+    } catch (error) {
+      res.status(500).json({
+        message: "Error creating experience",
+        error: error.message,
+      });
+    }
+
+  }
   return{
     allExperiences,
+    createExperience
   }
 }
