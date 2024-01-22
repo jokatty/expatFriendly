@@ -1,7 +1,10 @@
 import db from '../db/models/index.mjs';
 import initQuestionController from '../controllers/questionsController.mjs';
+import initExperienceController from '../controllers/experiencesController.mjs';
 
 export default function routes(app){
-  const products = initQuestionController(db)
-  app.get('/questions', products.allQuestions)
+  const questions = initQuestionController(db)
+  const experiences = initExperienceController(db)
+  app.get('/questions', questions.allQuestions)
+  app.get('/experiences', experiences.allExperiences)
 }
