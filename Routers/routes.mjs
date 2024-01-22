@@ -7,4 +7,5 @@ export default function routes(app){
   const experiences = initExperienceController(db)
   app.get('/questions', questions.allQuestions)
   app.get('/experiences', experiences.allExperiences)
+  app.post('/experiences', experiences.createExperience)
 }
