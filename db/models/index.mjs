@@ -2,6 +2,8 @@ import Sequelize from 'sequelize';
 import url from 'url';
 import allConfig from '../../config/database.js';
 import questionModel from './question.js';
+import experienceModel from './experience.js';
+import userModel from './user.js';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -32,10 +34,14 @@ if (env === 'production') {
 }
 
 db.Question = questionModel(sequelize, Sequelize.DataTypes);
-// db.Image = imageModel(sequelize, Sequelize.DataTypes);
+db.Experience = experienceModel(sequelize,Sequelize.DataTypes);
+db.User = userModel(sequelize, Sequelize.DataTypes);
 
 // db.User.hasMany(db.Image);
 // db.Image.belongsTo(db.User);
+
+db.User.hasMany(db.Experience);
+db.Experience.belongsTo(db.User);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
