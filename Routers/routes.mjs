@@ -8,5 +8,6 @@ export default function routes(app){
   app.get('/questions', questions.allQuestions)
   app.get('/questions/:id', questions.getOneQuestion)
   app.get('/experiences', experiences.allExperiences)
+  app.get('experiences/:id', experiences.getOneExperience)
   app.post('/experiences', experiences.createExperience)
 }
