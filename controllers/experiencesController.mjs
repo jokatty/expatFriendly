@@ -11,6 +11,24 @@ export default function initExperienceController(db) {
       });
     }
   }
+
+  // get one experience
+  const getOneExperience = async(req,res)=>{
+    try {
+      const experience = await db.Experience.findOne({
+        where: {
+          id: req.params.id
+        }
+      });
+      res.status(200).json(experience);
+    } catch (error) {
+      res.status(500).json({
+        message: "Error retrieving one experience",
+        error: error.message,
+      });
+    }
+  }
+
   const createExperience = async(req,res)=>{
       const userExperience ={
         experience: req.body.experience,
@@ -29,6 +47,7 @@ export default function initExperienceController(db) {
   }
   return{
     allExperiences,
+    getOneExperience,
     createExperience
   }
 }
